@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+  h2 GCM console
+  table(border=1)
+    thead
+     tr
+      th location
+      th lastupdate
+      th send
+    tbody
+      each item in list
+        tr
+         td
+          a(href='https://www.google.com/maps?q='+ item.latitude + ',' + item.longitude, target='_blank') #{item.latitude}, #{item.longitude} 
+         td #{item.lastupdate}
+         td
+          form(action='send', method='post')
+            input(name='msg', type='hidden' value='test')
+            input(name='regId', type='hidden', value= item.regId)
+            input(type='submit')
